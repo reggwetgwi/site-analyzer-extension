@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройки - Site Analyzer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #2a2a2a;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .subtitle {
+      color: #999;
+      margin-bottom: 32px;
+      font-size: 14px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #ccc;
+    }
+    textarea {
+      width: 100%;
+      padding: 12px;
+      background: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 14px;
+      font-family: 'Courier New', monospace;
+      transition: border-color 0.2s;
+      resize: vertical;
+      min-height: 120px;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #4a9eff;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      background: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 14px;
+      font-family: 'Courier New', monospace;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #4a9eff;
+    }
+    .field {
+      margin-top: 24px;
+    }
+    code {
+      background: #1a1a1a;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #4a9eff;
+    }
+    .cache-block {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid #3a3a3a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .cache-info {
+      color: #999;
+      font-size: 13px;
+    }
+    .cache-info strong {
+      color: #fff;
+    }
+    .btn-clear {
+      flex: none;
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+    .help-text {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #888;
+      line-height: 1.5;
+    }
+    .help-text a {
+      color: #4a9eff;
+      text-decoration: none;
+    }
+    .help-text a:hover {
+      text-decoration: underline;
+    }
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    button {
+      flex: 1;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #4a9eff;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: #3a8eef;
+    }
+    .btn-primary:disabled {
+      background: #555;
+      cursor: not-allowed;
+    }
+    .btn-secondary {
+      background: #3a3a3a;
+      color: #ccc;
+    }
+    .btn-secondary:hover {
+      background: #4a4a4a;
+    }
+    .status {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      display: none;
+    }
+    .status.success {
+      background: #1a4d2e;
+      color: #4ade80;
+      border: 1px solid #2d6a4f;
+    }
+    .status.error {
+      background: #4d1a1a;
+      color: #f87171;
+      border: 1px solid #6a2d2d;
+    }
+    .status.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Настройки расширения</h1>
+    <p class="subtitle">Настройте API-ключ Google Gemini для анализа сайтов</p>
+
+    <div>
+      <label for="apiKeys">API-ключи Google Gemini (по одному на строку)</label>
+      <textarea
+        id="apiKeys"
+        placeholder="AIzaSy...&#10;AIzaSy...&#10;AIzaSy..."
+        autocomplete="off"
+        spellcheck="false"
+        rows="5"
+      ></textarea>
+      <p class="help-text">
+        Добавьте несколько бесплатных API-ключей (по одному на строку) с
+        <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>.
+        При превышении лимита одного ключа автоматически переключится на следующий.
+      </p>
+    </div>
+
+    <div class="field">
+      <label for="model">Модель Gemini</label>
+      <input type="text" id="model" list="modelList" placeholder="gemini-2.5-flash"
+             autocomplete="off" spellcheck="false">
+      <datalist id="modelList">
+        <option value="gemini-2.5-flash"></option>
+        <option value="gemini-2.5-pro"></option>
+        <option value="gemini-flash-latest"></option>
+        <option value="gemini-2.0-flash"></option>
+        <option value="gemini-1.5-flash"></option>
+      </datalist>
+      <p class="help-text">
+        Какую модель использовать. Если оставить пустым — будет <code>gemini-2.5-flash</code>.
+        Если модель недоступна, расширение само попробует запасные варианты.
+      </p>
+    </div>
+
+    <div class="button-group">
+      <button class="btn-secondary" id="cancelBtn">Отмена</button>
+      <button class="btn-primary" id="saveBtn">Сохранить</button>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="cache-block">
+      <div class="cache-info">
+        В кэше анализов: <strong id="cacheCount">0</strong>
+      </div>
+      <button class="btn-secondary btn-clear" id="clearCacheBtn">Очистить кэш анализов</button>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

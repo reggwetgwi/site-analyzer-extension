@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Analyzer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Заголовок -->
+    <div class="header">
+      <div class="domain-info">
+        <h1 id="domain">Анализ сайта</h1>
+        <span class="status-badge" id="statusBadge">Готов</span>
+      </div>
+      <button class="icon-btn" id="settingsBtn" title="Настройки">⚙️</button>
+    </div>
+
+    <!-- Индикатор загрузки -->
+    <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+      <div class="loading-steps">
+        <div class="loading-step" id="step1">
+          <span class="step-icon">📄</span>
+          <span class="step-text">Анализ страницы...</span>
+        </div>
+        <div class="loading-step" id="step2">
+          <span class="step-icon">🤖</span>
+          <span class="step-text">Обработка ИИ...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Контент -->
+    <div class="content" id="content">
+      <!-- Открывашка -->
+      <div class="section">
+        <div class="section-header">
+          <h2>🎯 Открывашка для звонка</h2>
+          <button class="btn-copy" id="copyOpener">Скопировать</button>
+        </div>
+        <div class="opener-text" id="openerText"></div>
+      </div>
+
+      <!-- Услуги -->
+      <div class="section">
+        <h2>💼 Что предложить</h2>
+        <div class="services-grid" id="servicesOffer"></div>
+      </div>
+
+      <div class="section">
+        <h2>🚫 Что НЕ предлагать</h2>
+        <div class="services-grid dimmed" id="servicesAvoid"></div>
+      </div>
+
+      <!-- Сильные/Слабые стороны -->
+      <div class="section">
+        <div class="two-columns">
+          <div>
+            <h3>✅ Сильные стороны</h3>
+            <ul class="points-list" id="strengths"></ul>
+          </div>
+          <div>
+            <h3>⚠️ Слабые стороны</h3>
+            <ul class="points-list" id="weaknesses"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Конкуренты -->
+      <div class="section">
+        <div class="section-header">
+          <h2>🎯 Конкуренты в выдаче</h2>
+          <button class="btn-find-competitors" id="findCompetitorsBtn">Найти</button>
+        </div>
+        <div class="competitors-container" id="competitorsContainer">
+          <p class="competitors-hint">Нажмите "Найти" для поиска конкурентов в Google</p>
+        </div>
+      </div>
+
+      <!-- Техническая сводка -->
+      <div class="section">
+        <div class="collapsible">
+          <button class="collapsible-header" id="techToggle">
+            <span>🔧 Техническая сводка</span>
+            <span class="arrow">▼</span>
+          </button>
+          <div class="collapsible-content" id="techContent">
+            <pre id="techData"></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопка обновления -->
+      <button class="btn-refresh" id="refreshBtn">🔄 Обновить анализ</button>
+
+      <!-- Чат с ИИ -->
+      <div class="section chat-section">
+        <h2>💬 Чат с ИИ</h2>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-container">
+          <textarea
+            id="chatInput"
+            placeholder="Задайте вопрос о сайте..."
+            rows="2"
+          ></textarea>
+          <button class="btn-send" id="sendBtn">Отправить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ошибка -->
+    <div class="error" id="error">
+      <div class="error-icon">⚠️</div>
+      <div class="error-message" id="errorMessage"></div>
+      <button class="btn-refresh" id="errorRetryBtn">Попробовать снова</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
